@@ -1,0 +1,100 @@
+:root {
+  --color: light-dark(hsl(0, 0%, 0%), hsl(0, 0%, 100%));
+  --background-color: light-dark(hsl(0, 0%, 85%), hsl(0, 0%, 15%));
+
+  --border-radius-sm: 10px;
+  --border-radius-md: 20px;
+
+  --space-sm: 5px;
+  --space-md: 10px;
+  --space-lg: 20px;
+
+  font-family: Arial, Helvetica, sans-serif;
+  color-scheme: light dark;
+  color: var(--color);
+  background-color: var(--background-color);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+}
+
+.neumo {
+  --neumo-item-distance: 10px;
+  --neumo-item-light-angle: 45deg;
+  --neumo-item-shadow-color: hsl(0, 0%, 0%, 0.2);
+  --neumo-item-highlight-color: hsl(0, 0%, 100%, 0.8);
+
+  --neumo-item-shadow-x-offset-base: calc(
+    var(--neumo-item-distance) * cos(var(--neumo-item-light-angle))
+  );
+  --neumo-item-shadow-y-offset-base: calc(
+    var(--neumo-item-distance) * sin(var(--neumo-item-light-angle))
+  );
+  --neumo-item-shadow-spread-base: calc(var(--neumo-item-distance) * 0.5);
+  --neumo-item-shadow: calc(var(--neumo-item-shadow-x-offset-base) * -0.5)
+    calc(var(--neumo-item-shadow-y-offset-base) * -0.5)
+    calc(var(--neumo-item-shadow-spread-base) * 1) 0px
+    var(--neumo-item-highlight-color);
+  --neumo-item-highlight: calc(var(--neumo-item-shadow-x-offset-base) * 0.5)
+    calc(var(--neumo-item-shadow-y-offset-base) * 0.5)
+    calc(var(--neumo-item-shadow-spread-base) * 1) 0px
+    var(--neumo-item-shadow-color);
+
+  box-sizing: border-box;
+  margin: 10px;
+  display: block;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: var(--neumo-item-shadow), var(--neumo-item-highlight);
+
+  &.hollow {
+    box-shadow: inset var(--neumo-item-shadow),
+      inset var(--neumo-item-highlight);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    --neumo-item-shadow-color: hsl(0, 0%, 0%, 0.8);
+    --neumo-item-highlight-color: hsl(0, 0%, 100%, 0.2);
+  }
+}
+
+.neumo {
+  *& {
+    --neumo-item-distance: 20px;
+
+    margin: var(--space-md);
+    color: var(--color);
+    background-color: var(--background-color);
+    border-radius: var(--border-radius-md);
+  }
+
+  button& {
+    --neumo-item-distance: 10px;
+
+    appearance: none;
+    border: none;
+    padding: var(--space-md);
+    transition: box-shadow 0.3s ease-out;
+    font-weight: bold;
+
+    &:hover {
+      --neumo-item-distance: 15px;
+
+      cursor: pointer;
+    }
+
+    &:active {
+      --neumo-item-distance: 5px;
+
+      box-shadow: inset var(--neumo-item-shadow),
+        inset var(--neumo-item-highlight);
+    }
+  }
+}

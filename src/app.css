@@ -1,0 +1,30 @@
+#app {
+  position: absolute;
+  inset: 0;
+}
+
+.main-container {
+  --neumo-item-distance: 10px;
+
+  position: absolute;
+  inset: 0;
+  padding: var(--space-md);
+
+  & .container {
+    --neumo-item-distance: 10px;
+
+    overflow: hidden;
+  }
+}
+
+.content-container {
+  & iframe {
+    height: 100%;
+    width: 100%;
+    border: none;
+  }
+}
+
+.extras {
+  padding: var(--space-lg);
+}
