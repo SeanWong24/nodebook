@@ -1,11 +1,12 @@
 // TODO try wa-sqlite
 
 import initSqlJs, { Database } from "sql.js";
+import sqlJsWorkletURL from "sql.js/dist/sql-wasm.wasm?url";
 import { Edge } from "./edge";
 import { Node } from "./node";
 
 const SQL = await initSqlJs({
-  locateFile: (file) => `../node_modules/sql.js/dist/${file}`,
+  locateFile: () => sqlJsWorkletURL,
 });
 
 export async function openDB(fileHandle: FileSystemFileHandle) {
