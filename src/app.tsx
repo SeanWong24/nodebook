@@ -117,6 +117,7 @@ export function App() {
             <h3>Link From</h3>
             {coneectionsReversed.value.map((c) => (
               <button
+                class="neumo"
                 onClick={() => {
                   focusToNode(c.id);
                   selectedNodeId.value = c.id;
