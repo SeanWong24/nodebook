@@ -6,5 +6,9 @@ export default defineConfig({
   plugins: [preact()],
   build: {
     target: 'es2022'
+  },
+  server: {
+    allowedHosts: true,
+    host: true
   }
 })
